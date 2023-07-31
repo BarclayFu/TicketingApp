@@ -5,10 +5,12 @@ deploy:
     manifests:
       - ./infra/k8s/*
 build:
-  local:
-    push: false
+  # local:
+  #   push: false
+  googleCloudBuild:
+    projectId: compelling-weft-394302
   artifacts:
-    - image: barclayfu/auth
+    - image: us.gcr.io/compelling-weft-394302/auth
       context: auth
       docker:
         dockerfile: Dockerfile
