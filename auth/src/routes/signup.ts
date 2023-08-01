@@ -1,9 +1,9 @@
 import express, {Request, Response} from 'express';
-import { body } from 'express-validator';
+import { body, validationResult } from 'express-validator';
 
 const router = express.Router();
 
-router.post('/api/users/currentuser', [
+router.post('/api/users/signup', [
   body('email')
     .isEmail()
     .withMessage('Email must be valid'),
@@ -13,10 +13,20 @@ router.post('/api/users/currentuser', [
     .withMessage('Password must between 4 and 20 characters')
 ],
 (req : Request,res : Response) =>{
+  const errors = validationResult(req);
+
+  if(!errors.isEmpty()){
+    return res.status(400).send(errors.array());
+  }
+
   const{ email, password } = req.body;
 
+  console.log('Creating a user...');
+
+  res.send({});
+
   if(!email || typeof email !== 'string'){
-    res.status(400).send('Provide via email!')
+    res.status(400).send('Provide via email!');
   }
 });
 
