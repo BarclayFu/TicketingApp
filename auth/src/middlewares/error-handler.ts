@@ -9,10 +9,10 @@ export const errorHandler = (err: Error, req: Request, res : Response, next:Next
         return { message: error.msg, field: error.path };
       }
     });
-    return res.status(400).send({ errors: formattedErrors });
+    return res.status(err.statusCode).send({ errors: err.serializeErrors() });
   }
   if (err instanceof DatabaseConnectionError) {
-    return res.status(500).send({ errors: [{ message: err.reason }] });
+    return res.status(err.statusCode).send({ errors: [{ message: err.serializeErrors() }] });
   }
 
   res.status(400).send({
