@@ -7,6 +7,19 @@ interface UserAttrs{
   password: string;
 }
 
+// An interface that describes the properties that
+// a User model has
+interface UserModel extends mongoose.Model<UserDoc>{
+  build(attrs: UserAttrs): UserDoc;
+}
+
+// An interface that describes the properties
+// that a User Document has
+interface UserDoc extends mongoose.Document{
+  email: string,
+  password: string;
+}
+
 const userSchema = new mongoose.Schema({
   email:{
     type: String,
@@ -17,12 +30,19 @@ const userSchema = new mongoose.Schema({
     required: true
   }
 });
-
-const User = mongoose.model('User', userSchema);
-
-const buildUser = (attrs: UserAttrs) =>{
+userSchema.statics.build = (attrs: UserAttrs) => {
   return new User(attrs);
-};
+}
+
+const User = mongoose.model<UserDoc, UserModel>('User', userSchema);
+
+User.build({
+  email: 'tst@tst.com',
+  password: 'password'
+})
+// const buildUser = (attrs: UserAttrs) =>{
+//   return new User(attrs);
+// };
 
 // we don't use this because it cannot actually check,
 
@@ -38,4 +58,4 @@ const buildUser = (attrs: UserAttrs) =>{
 //   password: 'password'
 // });
 
-export {User, buildUser};
+export {User};
