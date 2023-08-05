@@ -12,7 +12,7 @@ import { errorHandler } from "./middlewares/error-handler";
 import { NotFoundError } from "./ errors/not-found-err";
 
 const app = express();
-app.settings('trust proxy', true);
+app.set('trust proxy', true);
 app.use(json());
 app.use(
   cookieSession({
