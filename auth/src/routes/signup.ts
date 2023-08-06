@@ -36,10 +36,13 @@ async (req : Request,res : Response) =>{
   await user.save();
 
   // Genertate JWT
+
   const userJwt = jwt.sign({
     id: user.id,
     email: user.email
-  }, 'asdf');
+  }, process.env.JWT_KEY!); // "!" tells Typrscript that we have checked the variable  
+                            // otherwise there will be a  wavy line!
+  
 
   //Store it on session object
   req.session = {
