@@ -1,10 +1,10 @@
 import express, {Request, Response} from 'express';
-import { body} from 'express-validator';
+import { body } from 'express-validator';
 import { validateRequest } from '../middlewares/validate-request';
 
 const router = express.Router();
 
-router.get('/api/users/signin', [
+router.post('/api/users/signin', [
   body('email')
   .isEmail()
   .withMessage('Email must be valid'),
@@ -15,7 +15,7 @@ body('password')
 ],
 validateRequest,
 (req: Request,res: Response) =>{
-  
+
 });
 
 export {router as signinRouter}; 
