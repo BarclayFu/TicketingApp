@@ -46,3 +46,22 @@ it('returns a 400 with an invalid password', async() =>{
     })
     .expect(400);
 });
+
+it('disallows duplicate emails', async ()=>{
+  await request(app)
+  .post('/api/users/signup')
+  .send({
+    email: 'test@test.com',
+    password: 'password'
+  })
+  .expect(201);
+
+  await request(app)
+  .post('/api/users/signup')
+  .send({
+    email: 'test@test.com',
+    password: 'password'
+  })
+  .expect(400);
+    
+});
