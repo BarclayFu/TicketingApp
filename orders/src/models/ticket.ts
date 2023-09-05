@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { Order, OrderStatus } from "./order";
 
 interface TicketAttrs {
-  ticket: string;
+  title: string;
   price: number;
 }
 
