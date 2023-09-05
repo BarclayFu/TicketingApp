@@ -1,6 +1,6 @@
 import express, {Request, Response} from 'express';
 import { Order, OrderStatus } from '../models/order';
-import { NotAuthorizedError, NotFoundError, requireAuth } from '@bsftickets/common';
+import { NotAuthorizedError, NotFoundError, requireAuth } from '@bsftickets/common/build';
 
 const router = express.Router();
 
