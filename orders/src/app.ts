@@ -4,7 +4,7 @@ import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
 import { errorHandler, NotFoundError, currentUser } from '@bsftickets/common/build';
 import { deleteOrderRouter } from './routes/delete';
-import { indexOrderRouter } from './routes';
+import { indexOrderRouter } from './routes/index';
 import { newOrderRouter } from './routes/new';
 import { showOrderRouter } from './routes/show';
 
@@ -14,17 +14,15 @@ app.use(json());
 app.use(
   cookieSession({
     signed: false,
-    secure: process.env.NODE_ENV !== 'test'
+    secure: process.env.NODE_ENV !== 'test',
   })
 );
-
 app.use(currentUser);
 
 app.use(deleteOrderRouter);
-app.use(newOrderRouter);
 app.use(indexOrderRouter);
+app.use(newOrderRouter);
 app.use(showOrderRouter);
-
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();

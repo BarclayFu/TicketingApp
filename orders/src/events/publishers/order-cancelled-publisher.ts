@@ -1,5 +1,5 @@
-import { Subjects, Publisher, OrderCancelledEvent } from "@bsftickets/common/build";
+import { Subjects, Publisher, OrderCancelledEvent } from '@bsftickets/common/build';
 
-export class OrderCancelledPublisher extends Publisher<OrderCancelledEvent>{
+export class OrderCancelledPublisher extends Publisher<OrderCancelledEvent> {
   subject: Subjects.OrderCancelled = Subjects.OrderCancelled;
 }
