@@ -7,6 +7,5 @@ export class OrderCreatedListener extends Listener<OrderCreatedEvent>{
   queueGroupName = queueGroupName;
 
   async onMessage(data: OrderCreatedEvent['data'], msg: Message){
-    
   }
 }
