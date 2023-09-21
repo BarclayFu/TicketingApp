@@ -39,3 +39,5 @@ const setup = async () => {
 it('finds, updates, and saves a ticket', async () => {});
 
 it('acks the message', async () => {});
+
+it('does not call ack if the event has a skipped version number', async () => {});
